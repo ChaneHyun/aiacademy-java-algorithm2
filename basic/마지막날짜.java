@@ -46,7 +46,7 @@ class 마지막날짜{
         int month = scanner.nextInt();
         int day = 0;
         switch (month) {
-            case 2: day = 28; break;
+            case 2: day = lastDayOfFeb(year); break;
             case 4: case 6: case 9: case 11: day = 30; break;
             case 1: case 3: case 5: case 7: case 8: case 10: case 12: day = 31; break;
         }
@@ -61,5 +61,15 @@ class 마지막날짜{
 
         scanner.close();
         return title + answer;
+    }
+
+    public int lastDayOfFeb(int year){
+        int lastDay = 0;
+        if(year % 400 == 0){ lastDay = 29; } 
+        else if(year % 100 == 0){ lastDay = 28; } 
+        else if(year % 4 == 0){ lastDay = 29; }
+        else { lastDay = 28; }
+
+        return lastDay;
     }
 }
