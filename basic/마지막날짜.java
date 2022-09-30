@@ -1,7 +1,6 @@
 package basic;
-/*
-마지막 날짜 문제
-
+import java.util.*;
+/**
 특정 달의 마지막 날을 알아내는 알고리즘을 작성하시오.
 달력으로 프린트 될수 있는 경우는 모두 몇가지 경우가 있을까?
 그달이 큰달인 경우 31일까지 있을 것이고,
@@ -16,60 +15,59 @@ package basic;
 1. 기본적으로 4의 배수가 되는 해는 윤년입니다...
 2. 다만 100의 배수가 되는 해는 윤년이 아닙니다...
 3. 그중에서 또 400의 배수가 되는 해는 윤년입니다..
-
 위 3가지 규칙을 만족하는 해는 윤년이 된다.
 
-년과 일을 입력받아서,
-
+년과 월을 입력받아서,
 출력하는 예는 다음과 같다.
 
 ******************
-년 월 일
+년 월 일 
 ******************
 2000 2 28
 ******************
- */
-
-import java.util.*;
+*/
 class 마지막날짜{
-    public static void main(String[] args){
+    public static void main(String[] args) {
         마지막날짜 solution = new 마지막날짜();
         System.out.println(solution.solution());
     }
-
     public String solution(){
-        String title = " ### 마지막 날짜 ###\n";
+        String title = " ### 마지막 날짜 ### \n";
         Scanner scanner = new Scanner(System.in);
-        System.out.print("년 입력(year) : ");
-        int year = scanner.nextInt();
-        System.out.print("월 입력(month) : ");
-        int month = scanner.nextInt();
+        int year = 0;
+        int month = 0;
         int day = 0;
-        switch (month) {
+        System.out.println("년을 입력: ");
+        System.out.print(">>> ");
+        year = scanner.nextInt();
+        System.out.println("월을 입력: ");
+        System.out.print(">>> ");
+        month = scanner.nextInt();
+        switch(month){
             case 2: day = lastDayOfFeb(year); break;
             case 4: case 6: case 9: case 11: day = 30; break;
             case 1: case 3: case 5: case 7: case 8: case 10: case 12: day = 31; break;
         }
-
-        String answer = String.format(
-            "******************\n"
-            + "년 월 일\n"
-            + "******************\n"
-            + "%d %d %d\n"
-            + "******************\n", 
-            year, month, day);
+        String answer = String.format("******************\n"
+        +"년 월 일 \n"
+        +"******************\n"
+        +"%d년 %d월은 [%d일]입니다.\n"
+        +"******************", year, month, day) ;
 
         scanner.close();
         return title + answer;
     }
-
     public int lastDayOfFeb(int year){
         int lastDay = 0;
-        if(year % 400 == 0){ lastDay = 29; } 
-        else if(year % 100 == 0){ lastDay = 28; } 
-        else if(year % 4 == 0){ lastDay = 29; }
-        else { lastDay = 28; }
+        //1. 기본적으로 4의 배수가 되는 해는 윤년입니다... (year % 4 == 29)
+        //2. 다만 100의 배수가 되는 해는 평년입니다... (year % 100 == 28)
+        //3. 그중에서 또 400의 배수가 되는 해는 윤년입니다.. (year % 400 == 29)
+        //4. 위 조건 중에 어디에도 속하지 않으면 평년입니다.
 
+        if(year % 400 == 0){lastDay = 29;}
+        else if(year % 100 == 0){lastDay = 28;}
+        else if(year % 4 == 0){lastDay = 29;}
+        else{lastDay = 28;}
         return lastDay;
     }
 }
