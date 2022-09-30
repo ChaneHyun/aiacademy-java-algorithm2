@@ -1,4 +1,4 @@
-package 입문;
+package basic;
 
 import java.util.*;
 class 비만도측정{

@@ -1,4 +1,4 @@
-package 입문;
+package basic;
 /*
 마지막 날짜 문제
 
