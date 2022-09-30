@@ -9,14 +9,15 @@ class 게시판 {
         System.out.println(" ### 게시판 ### \n");
         Scanner scanner = new Scanner(System.in);
         String[] board = new String[3];
+        int emptyCount = 3;
+        int lastIndex = 0;
         while(true){
             System.out.println("[메뉴] 0.종료 1.글쓰기 2.글목록 3.글삭제");
-            System.out.print(">>> ");
             String menu = scanner.next();
             switch(menu){
                 case "0": System.out.println("종료합니다."); return;
                 case "1": System.out.println("글쓰기");
-                            board = write(board, scanner); break;
+                            board = write(board, scanner, emptyCount, lastIndex); break;
                 case "2": System.out.println("글목록");
                             board = list(board); break;
                 case "3": System.out.println("글삭제");
@@ -28,9 +29,7 @@ class 게시판 {
     /**
      * 글쓰기
     */
-    public String[] write(String[] board, Scanner scanner){
-        int emptyCount = 3;
-        int lastIndex = 0;
+    public String[] write(String[] board, Scanner scanner, int emptyCount, int lastIndex){
         if(emptyCount==0){
             System.out.println(" === 게시판 용량(3개)이 가득 찼습니다. === ");
         }else{
@@ -47,7 +46,9 @@ class 게시판 {
      * 글목록
     */
     public String[] list(String[] board){
-        System.out.println(board[0]);
+        for(int i=0; i< board.length; i++){
+            System.out.println(String.format("게시글 내용: %s", board[i]));
+        }
         return board;
     }
     /**
